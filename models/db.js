@@ -8,7 +8,11 @@ if (!dbURL) {
 
 const db = new Sequelize(
   dbURL,
-  {
+  { dialect: 'postgres',
+    protocol: 'postgres',
+    dialectOptions: {
+      ssl: true
+  },
     logging: false,
   }
 );
