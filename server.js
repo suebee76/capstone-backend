@@ -2,6 +2,12 @@ const server = require("express")();
 server.use(require("body-parser").json());
 server.use(require("cors")());
 
+let port = process.env.PORT;
+if(!port){
+  port=3001;
+}
+
+
 const { db, Locations, Festivals } = require("./models/db.js");
 const { Op } = require("sequelize");
 
@@ -61,6 +67,23 @@ server.get("/loadDummyData", async (req, res) => {
   res.send({ created: true });
 });
 
+server.get("/loadDummyData", async (req, res) => {
+  const newLocation = await Locations.create({
+    placeName: "Central NY",
+    imageFileName: "./onondagacountymap.jpg",
+  });
+
+  await Festivals.create({
+    locationID: newLocation.locationID,
+    title: "New York State Blues Fest",
+    paragraph: "One of the largest free blues events in the Northeast June 24-26, 2021",
+    url: "https://www.nysbluesfest.com/",
+    image: "./nysbluesfest.jpeg",
+  });
+
+  res.send({ created: true });
+});
+
 server.get("/locations", async (req, res) => {
   res.send({
     locations: await Locations.findAll({ include: [{ model: Festivals }] }),
@@ -92,6 +115,6 @@ server.post("/festivals", async (req, res) => {
   res.send({ festivals: await Festivals.findAll() });
 });
 
-server.listen(3001, () => {
-  console.log("server is running on 3001");
+server.listen(port, () => {
+  console.log(`server is running on %{port}`);
 });
