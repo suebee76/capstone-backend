@@ -9,8 +9,10 @@ module.exports = (db) => {
     },
     locationID: DT.INTEGER,
     title: DT.STRING,
-    paragraph: DT.STRING,
-    url: DT.STRING,
+    paragraph: DT.TEXT,
+    date: DT.STRING,
+    buttonURL: DT.STRING,
+    buttonText: DT.STRING,
     image: DT.STRING,
   });
 };
