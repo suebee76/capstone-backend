@@ -46,58 +46,58 @@ const connectToDB = async () => {
 
   const festivals = await Festivals.findAll();
   if (festivals.length === 0) {
-    const newLocation = await Locations.create({
+    const cny = await Locations.create({
       placeName: "Central NY",
       imageFileName: "./onondagacountymap.jpg",
     });
 
-    await Locations.create({
+    const wny = await Locations.create({
       placeName: "Western NY",
       imageFileName: "./westernny.jpg",
     });
 
-    await Locations.create({
+    const capital = await Locations.create({
       placeName: "Capital District",
       imageFileName: "./capitaldistrictmap.jpg",
     });
 
-    await Locations.create({
+    const fingerLakes = await Locations.create({
       placeName: "Finger Lakes",
       imageFileName: "./fingerlakesmap.jpg",
     });
 
-    await Locations.create({
+    const hudsonValley = await Locations.create({
       placeName: "Hudson Valley",
       imageFileName: "./hudsonvalleymap.jpg",
     });
 
-    await Locations.create({
+    const longIsland = await Locations.create({
       placeName: "Long Island",
       imageFileName: "./longislandmap.jpg",
     });
 
-    await Locations.create({
+    const mohawkValley = await Locations.create({
       placeName: "Mohawk Valley",
       imageFileName: "./mohawkvalleysheetmusic.jpg",
     });
 
-    await Locations.create({
+    const northCountry = await Locations.create({
       placeName: "North Country",
       imageFileName: "./northcountrymap.jpg",
     });
 
-    await Locations.create({
+    const nyc = await Locations.create({
       placeName: "New York City",
       imageFileName: "./1863nycmap.jpg",
     });
 
-    await Locations.create({
+    const southernTier = await Locations.create({
       placeName: "Southern Tier",
       imageFileName: "./southerntiermap.jpg",
     });
 
     await Festivals.create({
-      locationID: newLocation.locationID,
+      locationID: cny.locationID,
       title: "New York State Blues Fest",
       date: "June 24-25-26, 2021",
       paragraph:
@@ -108,7 +108,7 @@ const connectToDB = async () => {
     });
 
     await Festivals.create({
-      locationID: newLocation.locationID,
+      locationID: northCountry.locationID,
       title: "Adirondack Independence Music Festival",
       date: "September 3-4-5, 2021",
       paragraph:
@@ -119,7 +119,7 @@ const connectToDB = async () => {
     });
 
     await Festivals.create({
-      locationID: newLocation.locationID,
+      locationID: fingerLakes.locationID,
       title: "Grassroots Festival of Music & Dance",
       date: "July 21-22-23-24, 2022",
       paragraph:
@@ -130,7 +130,7 @@ const connectToDB = async () => {
     });
 
     await Festivals.create({
-      locationID: newLocation.locationID,
+      locationID: hudsonValley.locationID,
       title: "Catskill Mountain Jubilee",
       date: "August 12-13-14, 2021",
       paragraph:
@@ -141,7 +141,7 @@ const connectToDB = async () => {
     });
 
     await Festivals.create({
-      locationID: newLocation.locationID,
+      locationID: wny.locationID,
       title: "Borderland",
       date: "September 18-19, 2021",
       paragraph:
@@ -152,7 +152,7 @@ const connectToDB = async () => {
     });
 
     await Festivals.create({
-      locationID: newLocation.locationID,
+      locationID: nyc.locationID,
       title: "Electric Zoo",
       date: "September 3-4-5, 2021",
       paragraph:
@@ -163,7 +163,7 @@ const connectToDB = async () => {
     });
 
     await Festivals.create({
-      locationID: newLocation.locationID,
+      locationID: nyc.locationID,
       title: "The Governors Ball",
       date: "September 24-25-26, 2021",
       paragraph:
@@ -174,7 +174,7 @@ const connectToDB = async () => {
     });
 
     await Festivals.create({
-      locationID: newLocation.locationID,
+      locationID: longIsland.locationID,
       title: "Great South Bay Music Festival",
       date: "July 7-8-9-10, 2022",
       paragraph:
@@ -185,7 +185,7 @@ const connectToDB = async () => {
     });
 
     await Festivals.create({
-      locationID: newLocation.locationID,
+      locationID: hudsonValley.locationID,
       title: "Woodsist Festival",
       date: "September 25-26, 2021",
       paragraph:

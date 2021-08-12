@@ -46,6 +46,20 @@ server.get("/locations/:placeName", async (req, res) => {
   });
 });
 
+server.get("/festivals/:placeName", async (req, res) => {
+  res.send({
+    festivals: await Festivals.findAll({
+      include: [
+        {
+          model: Locations,
+          where: { placeName: { [Op.iLike]: `%${req.params.placeName}%` } },
+          required: true,
+        },
+      ],
+    }),
+  });
+});
+
 server.get("/festivals", async (req, res) => {
   res.send({
     festivals: await Festivals.findAll({ include: [{ model: Locations }] }),
