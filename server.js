@@ -37,11 +37,33 @@ server.get("/locations", async (req, res) => {
   });
 });
 
+// server.get("/search", async (req, res) => {
+//   res.send({
+//     festivals: await Festivals.findAll({ include: [{ model: Locations }] }),
+//   });
+// });
+
 server.get("/locations/:placeName", async (req, res) => {
   res.send({
     locations: await Locations.findAll({
       where: { placeName: { [Op.iLike]: `%${req.params.placeName}%` } },
       include: [{ model: Festivals }],
+    }),
+  });
+});
+
+server.get("/search/:title", async (req, res) => {
+  res.send({
+    locations: await Locations.findAll({
+      // where: { placeName: { [Op.iLike]: `%${req.params.placeName}%` } },
+      // required: true,
+      include: [
+        {
+          model: Festivals,
+          where: { title: { [Op.iLike]: `%${req.params.title}%` } },
+          required: true,
+        },
+      ],
     }),
   });
 });
