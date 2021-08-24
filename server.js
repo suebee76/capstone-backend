@@ -74,7 +74,9 @@ server.get("/festivals/:placeName", async (req, res) => {
       include: [
         {
           model: Locations,
-          where: { placeName: { [Op.iLike]: `%${req.params.placeName}%` } },
+          where: {
+            placeName: { [Op.iLike]: `%${decodeURI(req.params.placeName)}%` },
+          },
           required: true,
         },
       ],
